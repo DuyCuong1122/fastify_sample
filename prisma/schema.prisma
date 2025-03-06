@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model book {
+  id             Int       @id @default(autoincrement())
+  title          String    @db.VarChar(255)
+  author         String    @db.VarChar(255)
+  published_date String?   @db.VarChar(255)
+  genre          String?   @db.VarChar(100)
+  price          Decimal?  @db.Decimal(10, 2)
+  isbn           String?   @unique(map: "isbn") @db.VarChar(20)
+  updated_at     DateTime? @default(now()) @db.Timestamp(0)
+}
